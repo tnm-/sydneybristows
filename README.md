@@ -6,9 +6,8 @@ Add the following to ~/.bash_aliases file or to the end of ~/.bashrc to enable t
 
 --- Cut from after this line ---
 ```
-
 if [ -f ~/.bash/.bash_aliases ]; then
     . ~/.bash/.bash_aliases
 fi
-
-```--- to before this line ---
+```
+--- to before this line ---

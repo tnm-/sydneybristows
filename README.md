@@ -1,4 +1,4 @@
-# TODO, probably for ever
+# WIP, probably for ever
 A collection of plug-in-able bashrc modules
 
 Add the following to ~/.bash_aliases file or to the end of ~/.bashrc to enable the aliases

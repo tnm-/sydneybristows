@@ -1,0 +1,29 @@
+: '
+KUBERNETES (K8S)#
+kubectl config get-contexts # Get the list of configured K8s contexts#
+kubectl config use-context <context name> # Set the default K8s context used by kubectl#
+'
+
+alias k='kubectl' # Short for K8s kubectl
+# load bash completion both for kubectl and k
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
+
+alias kd='kubectl describe' # Short for K8s kubectl describe
+alias kcll='kubectl config get-contexts' # K8s list cluster contexts
+alias kcls='kubectl config use-context' # K8s set active cluster context
+alias kgy='kubectl get -o yaml' # Get K8s resources in yaml format (useful for Custom Resources)
+
+function kpf() # Port-forwards a K8s pod (input1) to host port (input2 or random)
+{
+  podport=`kubectl get pod $1 -o=jsonpath='{.spec.containers[0].ports[0].containerPort}{"\n"}'`
+  kubectl port-forward pods/$1 $2:${podport}
+}
+
+function klp() # Get logs for a K8s pod from all namespaces grep-matching (input)
+{
+  kubectl logs -f -n `k get pods -A | grep $1 | tr -s ' ' | cut -d' ' -f1,2`
+}
+
+
+#

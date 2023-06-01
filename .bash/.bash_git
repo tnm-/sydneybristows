@@ -1,0 +1,32 @@
+: '
+GIT#
+git config --global pull.rebase true # Rebase should be default behavior when pulling from any Git repo#
+git reset # Undo adding files/changes to Git staging#
+git reset --hard HEAD # Throw away all local changes, local commits in current Git repo#
+git update-index --assume-unchanged # Ignore local changes in a file (locally) within a Git repo#
+git update-index --no-assume-unchanged # Detect and follow local changes in a file (locally) within a Git repo#
+git checkout # Revert changes on current branch or checkout new branch in from Git repo#
+
+'
+if [ -r /usr/share/bash-completion/completions/git ] 
+then
+  .  /usr/share/bash-completion/completions/git
+  __git_complete g __git_main
+  __git_complete gpl _git_pull
+  __git_complete ga _git_add
+  __git_complete gc _git_commit
+  __git_complete gcam _git_commit
+  __git_complete gps _git_push
+fi
+
+alias g="git" # Short for Git
+alias gst="git status" # See local changes, commit in Git repo
+alias gpl="git pull" # Pull commmits from remote Git repo
+alias ga="git add" # Add files to Git staging
+alias gc="git commit" # Commit changes to local Git repo
+alias gcam="git commit -am" # Add all local changes to Git staging and comit it with a message
+alias gap="git commit --amend" # Append to previous Git commit
+alias gps="git push" # Push local commits to remote Git repo
+alias gpullall="ls | xargs -I % sh -c 'echo - %; git -C % pull; echo'" # Pull all subrepos from parent Git repo
+
+#

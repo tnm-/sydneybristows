@@ -1,0 +1,40 @@
+: '
+KIND#
+'
+# load bash completion
+source <(kind completion bash)
+
+
+function getCluster() # Get the currently configured Kind cluster name
+{
+  kubectl config get-contexts | tr -s ' ' | grep "*" | cut -d" " -f2 | cut -d'-' -f2
+}
+
+function kldi() # Load local docker image named <input> to Kind cluster
+{
+  clustername=`getCluster`
+  kind load docker-image -n ${clustername} $1
+}
+
+function kindIp() # Get Kind IP address
+{
+  clustername=`getCluster`
+  docker container inspect ${clustername}-control-plane --format '{{ .NetworkSettings.Networks.kind.IPAddress }}'
+}
+
+function ingHosts() # Update /etc/hosts file with all host from ingress controllers (per Kind cluster)
+{
+  kindip=`kindIp`
+  clustername=`getCluster`
+  hosts=`kubectl get ing -o=jsonpath='{range .items[*]}{.spec.rules[*].host}{" "}{end}{"\n"}'`
+  echo ${kindip} ${hosts}
+  sudo sed -i "/#${clustername} kind cluster/ s/.*/${kindip}\t${hosts}\t#${clustername} kind cluster/g" /etc/hosts
+}
+
+function fix_inotify() # Increase inotify limits temporarily required by Kind cluster
+{
+  sudo sysctl fs.inotify.max_user_watches=524288
+  sudo sysctl fs.inotify.max_user_instances=512
+}
+
+#

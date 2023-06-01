@@ -19,14 +19,14 @@ then
   __git_complete gps _git_push
 fi
 
-alias g="git" # Short for Git
-alias gst="git status" # See local changes, commit in Git repo
-alias gpl="git pull" # Pull commmits from remote Git repo
-alias ga="git add" # Add files to Git staging
-alias gc="git commit" # Commit changes to local Git repo
-alias gcam="git commit -am" # Add all local changes to Git staging and comit it with a message
-alias gap="git commit --amend" # Append to previous Git commit
-alias gps="git push" # Push local commits to remote Git repo
+alias g='git' # Short for Git
+alias gst='git status' # See local changes, commit in Git repo
+alias gpl='git pull' # Pull commmits from remote Git repo
+alias ga='git add' # Add files to Git staging
+alias gc='git commit' # Commit changes to local Git repo
+alias gcam='git commit -am' # Add all local changes to Git staging and comit it with a message
+alias gap='git commit --amend' # Append to previous Git commit
+alias gps='git push' # Push local commits to remote Git repo
 alias gpullall="ls | xargs -I % sh -c 'echo - %; git -C % pull; echo'" # Pull all subrepos from parent Git repo
 
 #

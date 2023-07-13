@@ -14,8 +14,7 @@ fi
 
 '
 
-function h() # [Generic] Help - list all custom aliases, functions and cheat sheets,
-#           Filtered by optional <input>; like "docker", "k8s", "kind" and so on...#
+function h() # [Generic] Help - list all custom aliases, functions and cheat sheets, filtered by optional <input>
 {
         if [ $# -eq 0 ]; then
                 FILTER="$"                                   

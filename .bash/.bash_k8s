@@ -1,7 +1,5 @@
 : '
 KUBERNETES (K8S)#
-kubectl config get-contexts # Get the list of configured K8s contexts#
-kubectl config use-context <context name> # Set the default K8s context used by kubectl#
 '
 
 alias k='kubectl' # Short for K8s kubectl

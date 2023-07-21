@@ -26,7 +26,7 @@ function go2d() # Build stat. linked GO binary & build docker image as <folder n
   docker build -t ${PWD##*/}:${version} .
 }
 
-function dbash() # Enter /bin/bash in container named <input>
+function dbash() # Enter /bin/bash in Docker container named <input>
 {
   docker exec -it $1 /bin/bash
 }

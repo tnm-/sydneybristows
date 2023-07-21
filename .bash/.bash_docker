@@ -2,6 +2,7 @@
 DOCKER#
 docker build -t <name>:<version> <path/to/dockerfile> # Build docker image#
 docker run -p <host_port_to_use>:<cont_port_to_expose> <img_tag> # Run container from image with name[:version] as image tag and expose port#
+docker exec -it <container name> /bin/bash
 docker container prune # Removes all stopped containers#
 docker image prune # Cleans up dangling images (not tagged not referenced by any container)#
 docker image prune -a # Removes all images which are not used by existing containers#
@@ -22,6 +23,11 @@ function go2d() # Build stat. linked GO binary & build docker image as <folder n
     version=$1
   fi
   docker build -t ${PWD##*/}:${version} .
+}
+
+function dbash() # Enter /bin/bash in container named <input>
+{
+  docker exec -it $1 /bin/bash
 }
 
 function startdocker() # Start all Docker services

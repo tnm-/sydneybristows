@@ -1,7 +1,7 @@
 : '
 GENERIC#
 
-Add the following to ~/.bash_aliases file or to the end of ~/.bashrc to enable the aliases
+Add the following to the end of ~/.bashrc to enable the aliases (after programmable completion is enabled)
   defined or referenced here, assuming that your .bash folder is added to ~ (a.k.a. $HOME or /home/<linux-username>)
 
 --- Cut from after this line ---

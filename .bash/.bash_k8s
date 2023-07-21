@@ -13,6 +13,8 @@ alias kd='kubectl describe' # Short for K8s kubectl describe
 alias kcll='kubectl config get-contexts' # K8s list cluster contexts
 alias kcls='kubectl config use-context' # K8s set active cluster context
 alias kgy='kubectl get -o yaml' # Get K8s resources in yaml format (useful for Custom Resources)
+alias kgx='kubectl config get-contexts' # Get the list of configured K8s contexts
+alias kux='kubectl config use-context' # Set the default K8s context used by kubectl with <input>
 
 function kpf() # Port-forwards a K8s pod (input1) to host port (input2 or random)
 {

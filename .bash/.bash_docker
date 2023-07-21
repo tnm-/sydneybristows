@@ -10,6 +10,7 @@ docker image prune -a # Removes all images which are not used by existing contai
 
 alias d='docker' # Short for docker
 # load bash completion for d
+_completion_loader docker
 complete -F _docker d
 
 function go2d() # Build stat. linked GO binary & build docker image as <folder name>:<input|"latest"> as tag

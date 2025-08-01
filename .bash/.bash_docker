@@ -1,5 +1,6 @@
 : '
 DOCKER#
+sudo usermod -aG docker $USER # Add current user to docker group so it can access socker daemon
 docker build -t <name>:<version> <path/to/dockerfile> # Build docker image#
 docker run -p <host_port_to_use>:<cont_port_to_expose> <img_tag> # Run container from image with name[:version] as image tag and expose port#
 docker exec -it <container name> /bin/bash

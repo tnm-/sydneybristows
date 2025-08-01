@@ -1,0 +1,50 @@
+: '
+Network#
+'
+
+# vpn_on() {
+#    sudo openconnect -b --no-proxy --cafile=/home/<user>/certs/<rootca>.crt -u <user>@<company> -c ~/certs/<path>.crt -k ~/certs/<path>.key <server>
+# }
+
+vpn_off() {
+    sudo pkill -SIGINT openconnect
+}
+
+proxy_on() {
+	# proxy setup
+	proxy_value=10.*.*.*
+	#
+	export no_proxy=localhost,127.0.0.1,127.0.1.1,172.0.0.0/8,10.0.0.0/8
+	export NO_PROXY=localhost,127.0.0.1,127.0.1.1,172.0.0.0/8,10.0.0.0/8
+	export http_proxy=http://$proxy_value:8080/
+	export HTTP_PROXY=http://$proxy_value:8080/
+	export https_proxy=http://$proxy_value:8080/
+	export HTTPS_PROXY=http://$proxy_value:8080/
+	export ftp_proxy=http://$proxy_value:8080/
+	export FTP_PROXY=http://$proxy_value:8080/
+	# export socks_proxy=socks://$proxy_value:1081/
+	# export SOCKS_PROXY=socks://$proxy_value:1081/
+	export all_proxy=socks://$proxy_value:8080/
+	export ALL_PROXY=socks://$proxy_value:8080/
+}
+
+proxy_off() {
+    unset no_proxy
+	unset NO_PROXY
+	unset http_proxy
+	unset HTTP_PROXY
+	unset https_proxy
+	unset HTTPS_PROXY
+	unset ftp_proxy
+	unset FTP_PROXY
+	# unset socks_proxy
+	# unset SOCKS_PROXY
+	unset all_proxy
+	unset ALL_PROXY
+}
+
+apt-wp() {
+    sudo apt $* -o Acquire::http::Proxy='http://10.*.*.*:8080'
+}
+
+#

@@ -30,13 +30,18 @@ function h() # [Generic] Help - list all custom aliases, functions and cheat she
         cat $HOME/.bash/.bash* | egrep "^alias|[(][)]|#$" | grep -i --color=never $FILTER | column -t -s "#"
 }
 
+export PS1="\[\033[01;34m\][\t] $PS1"
 
 function tt() # [Generic] Set the title of the terminal window to <input>
 {
   if [[ -z "$ORIG" ]]; then
     ORIG=$PS1
   fi
-  TITLE="\[\e]2;$*\a\]"
+  if [ -z "$1" ]; then
+    TITLE=""
+  else
+    TITLE="\[\e]2;$*\a\]"
+  fi
   PS1=${ORIG}${TITLE}
 }
 
@@ -58,6 +63,11 @@ fi
 # enable Kind commands
 if [ -f $HOME/.bash/.bash_kind ]; then
     . $HOME/.bash/.bash_kind
+fi
+
+# enable proxy and vpn commands
+if [ -f $HOME/.bash/.bash_network ]; then
+    . $HOME/.bash/.bash_network
 fi
 
 #

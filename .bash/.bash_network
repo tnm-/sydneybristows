@@ -51,6 +51,11 @@ sys_proxy_off() {
 	dconf write /system/proxy/mode '"none"'
 }
 
+sys_proxy_auto() {
+	dconf write /system/proxy/mode '"auto"'
+	dconf write /system/proxy/autoconfig-url '"<path-pac-file>"'
+}
+
 apt-wp() {
     sudo apt $* -o Acquire::http::Proxy='http://10.*.*.*:8080'
 }
